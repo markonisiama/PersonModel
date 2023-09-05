@@ -15,6 +15,8 @@ import static java.lang.System.out;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+
 import static java.nio.file.StandardOpenOption.CREATE;
 import javax.swing.JFileChooser;
 
@@ -25,6 +27,9 @@ public class PersonReader
         JFileChooser chooser = new JFileChooser();
         File selectedFile;
         String rec = "";
+        ArrayList<Person> people = new ArrayList<>();
+        int yearOfBirth = 0;
+
 
         try
         {
@@ -50,6 +55,10 @@ public class PersonReader
                     line++;
                     // echo to screen
                     String[] fields = rec.split(", ");
+                    yearOfBirth = Integer.parseInt(fields[4]);
+                    Person individualPerson= new Person(fields[0],fields[1], fields[2], fields[3], yearOfBirth);
+                    people.add(individualPerson);
+
                     System.out.printf("%-10s %-15s %-15s %-15s %-4s\n", fields[0], fields[1], fields[2], fields[3], fields[4]);
 
                 }
